@@ -14,7 +14,7 @@ class TagsController < ApplicationController
   end
 
   def get_project_list
-    values = Tag.where(name: 'Project').values
+    values = Tag.where(name: 'Project').first.values
     render json: values
   end
 
