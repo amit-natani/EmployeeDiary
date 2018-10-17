@@ -3,8 +3,9 @@ class Entry
   include Mongoid::Timestamps
 
   field :author_id, type: Integer
-  field :mentioned_user_ids, type: Array
+  field :tagged_user_ids, type: Array
   field :title, type: String
+  field :description, type: String
   field :related_to, type: String
   field :entry_type_id, type: String
   field :version, type: String
@@ -17,7 +18,7 @@ class Entry
   field :approval_decision_at, type: DateTime
   field :approval_desision_by, type: Integer
 
-  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id
+  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description
 
   validate :validate_entry_contents
 
