@@ -41,7 +41,7 @@ class EntriesController < ApplicationController
 
   private
   def entry_create_params
-    params.require(:entry).permit(:title, :description, :related_to, :entry_type_id, :duration, content: {}, :tagged_user_ids => [], :shared_with => {})
+    params.require(:entry).permit(:sharing_level, :title, :description, :entry_type_id, content: {}, :tagged_user_ids => [], :shared_with => {})
   end
 
   # def validate_entry entry 

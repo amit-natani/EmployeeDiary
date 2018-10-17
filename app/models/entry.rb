@@ -4,12 +4,11 @@ class Entry
 
   field :author_id, type: Integer
   field :tagged_user_ids, type: Array
+  field :sharing_level, type: String
   field :title, type: String
   field :description, type: String
-  field :related_to, type: String
   field :entry_type_id, type: String
   field :version, type: String
-  field :duration, type: BigDecimal
   field :content, type: Hash
   field :shared_with, type: Hash
   field :needs_approval, type: Boolean
@@ -18,7 +17,7 @@ class Entry
   field :approval_decision_at, type: DateTime
   field :approval_desision_by, type: Integer
 
-  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description
+  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description, :sharing_level
 
   validate :validate_entry_contents
 
