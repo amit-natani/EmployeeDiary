@@ -151,7 +151,7 @@ development:
     # app_name: MyApplicationName
 
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
       options:
