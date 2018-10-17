@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     member do
       get :values
     end
+    collection do
+      get :get_project_list
+    end
   end
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

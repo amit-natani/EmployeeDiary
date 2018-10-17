@@ -13,6 +13,11 @@ class TagsController < ApplicationController
     render json: values
   end
 
+  def get_project_list
+    values = Tag.where(name: 'Project').values
+    render json: values
+  end
+
   private
   def tag_params
     
