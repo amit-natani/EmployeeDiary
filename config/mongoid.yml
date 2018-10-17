@@ -149,6 +149,16 @@ development:
     # Application name that is printed to the mongodb logs upon establishing a
     # connection in server versions >= 3.4. Note that the name cannot exceed 128 bytes.
     # app_name: MyApplicationName
+
+production:
+  clients:
+    default:
+      database: my_app_production
+      hosts:
+        - localhost:27017
+      options:       
+  options:
+   
 test:
   clients:
     default:
