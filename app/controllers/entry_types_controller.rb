@@ -2,6 +2,15 @@ class EntryTypesController < ApplicationController
   def index
     @entry_types = EntryType.where(instantiable: true)
   end
+
+  def root_entry_types
+    @entry_types = EntryType.where(instantiable: nil)
+  end
+
+  def sub_entry_types
+    parent_id = params[:id]
+    @entry_types = EntryType.where(parent_id: parent_id)
+  end
   
   def get_custom_form
     id = params[:id]

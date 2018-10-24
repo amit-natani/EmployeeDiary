@@ -11,7 +11,9 @@ class EntryType
   field :view_url, type: String
   field :versions, type: Hash
   field :parent_id, type: String
-  field :instantiable, type: Boolean
+  field :instantiable, type: Boolean, default: false
+  field :cost_head, type: String
+  field :cost_head_id, type: String
 
   validates_presence_of :name
 end

@@ -16,6 +16,7 @@ class Entry
   field :approver_ids, type: Array
   field :approval_decision_at, type: DateTime
   field :approval_desision_by, type: Integer
+  field :cost_head, type: String
 
   validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description, :sharing_level
 
@@ -58,6 +59,7 @@ class Entry
     self.version = entry_type.active_version
     self.needs_approval = false
     self.status = "not_required"
-    self.author_id = User.last._id
+    self.author_id = User.last.id
+    self.cost_head = entry_type.cost_head
   end
 end
