@@ -4,7 +4,7 @@ class EntryTypesController < ApplicationController
   end
 
   def root_entry_types
-    @entry_types = EntryType.where(instantiable: nil)
+    @entry_types = EntryType.where(instantiable: false)
   end
 
   def sub_entry_types
