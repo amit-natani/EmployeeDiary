@@ -4,12 +4,17 @@ class EntryTypesController < ApplicationController
   end
 
   def root_entry_types
-    @entry_types = EntryType.where(instantiable: false)
+    @entry_types = EntryType.non_instantiable
   end
 
   def sub_entry_types
     parent_id = params[:id]
-    @entry_types = EntryType.where(parent_id: parent_id)
+    @entry_types = EntryType.sub_entry_types(parent_id)
+  end
+
+  def all_sub_entry_types
+    @entry_types = EntryType.all_sub_entry_types
+    render :sub_entry_types
   end
   
   def get_custom_form

@@ -2,7 +2,8 @@ class Entry
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :author_id, type: Integer
+  field :author_id, type: String
+  field :owner_id, type: String
   field :tagged_user_ids, type: Array
   field :sharing_level, type: String
   field :title, type: String
@@ -18,9 +19,19 @@ class Entry
   field :approval_desision_by, type: Integer
   field :cost_head, type: String
 
-  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description, :sharing_level
 
+  # Association
+  belongs_to :entry_type, touch: true
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+
+
+  # Validations
+  validates_presence_of :needs_approval, :status, :version, :entry_type_id, :author_id, :description, :sharing_level
   validate :validate_entry_contents
+
+
+  # Callbacks
+  # after_create :update_counts
 
   def validate_entry_contents
     if(entry_type_id.present?)
@@ -60,6 +71,26 @@ class Entry
     self.needs_approval = false
     self.status = "not_required"
     self.author_id = User.last.id
+    self.owner = User.last
     self.cost_head = entry_type.cost_head
   end
+
+  # private
+  # def update_counts
+  #   entry_type_name = entry_type.name
+  #   if (EntryType.find(entry_type.parent_id).name == "Worklog")
+  #     if(owner.worklog_counts[entry_type_name].present?)
+  #       owner.worklog_counts[entry_type_name] += 1
+  #     else
+  #       owner.worklog_counts[entry_type_name] = 1
+  #     end
+  #   elsif (EntryType.find(entry_type.parent_id).name == "Feedback")
+  #     if(owner.feedback_counts[entry_type_name].present?)
+  #       owner.feedback_counts[entry_type_name] += 1
+  #     else
+  #       owner.feedback_counts[entry_type_name] = 1
+  #     end
+  #   end
+  #   owner.save!
+  # end
 end

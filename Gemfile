@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
-gem 'mongoid', '~> 6.0'
+gem 'mongoid', '~> 7.0', '>= 7.0.2'
 
 gem 'bson_ext'
 

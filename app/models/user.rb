@@ -8,6 +8,8 @@ class User
   field :ref_id, type: Integer
   field :is_active, type: Boolean, default: true
 
+  has_many :entries
+
   def name
     if middle_name.present?
       first_name + " " + middle_name + " " + last_name

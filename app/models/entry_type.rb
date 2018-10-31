@@ -15,5 +15,19 @@ class EntryType
   field :cost_head, type: String
   field :cost_head_id, type: String
 
+  # Associations
+  has_many :entries, dependent: :nullify
+
+  # validataions
   validates_presence_of :name
+
+  scope :non_instantiable, -> { where(instantiable: false) }
+
+  scope :sub_entry_types, -> (parent_id) do
+     where(parent_id: parent_id.to_s) 
+  end
+
+  scope :all_sub_entry_types, -> do
+    where(instantiable: true) 
+ end
 end
