@@ -86,7 +86,7 @@ class EntriesController < ApplicationController
 
   private
   def entry_create_params
-    params.require(:entry).permit(:sharing_level, :title, :description, :entry_type_id, content: {}, :tagged_user_ids => [], :shared_with => {})
+    params.require(:entry).permit(:sharing_level, :title, :description, :entry_type_id, content: {}, :tagged_user_ids => [], :shared_with => [:first_name, :last_name, :full_name, :email, :internal_id, :external_id])
   end
 
   def format_worklog_entries entries

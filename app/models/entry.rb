@@ -11,14 +11,13 @@ class Entry
   field :entry_type_id, type: String
   field :version, type: String
   field :content, type: Hash
-  field :shared_with, type: Hash
+  field :shared_with, type: Array
   field :needs_approval, type: Boolean
   field :status, type: String
   field :approver_ids, type: Array
   field :approval_decision_at, type: DateTime
   field :approval_desision_by, type: Integer
   field :cost_head, type: String
-
 
   # Association
   belongs_to :entry_type, touch: true
