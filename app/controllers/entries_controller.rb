@@ -15,8 +15,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find_by_id(params[:id])
-    render json: @entry, status: :ok
+    @entry = Entry.find(params[:id])
   end
   
   def update
@@ -86,7 +85,7 @@ class EntriesController < ApplicationController
 
   private
   def entry_create_params
-    params.require(:entry).permit(:sharing_level, :title, :description, :entry_type_id, content: {}, :tagged_user_ids => [], :shared_with => [:first_name, :last_name, :full_name, :email, :internal_id, :external_id])
+    params.require(:entry).permit(:sharing_level, :entry_type_id, description: {}, content: {}, :tagged_users => [:display_name, :first_name, :last_name, :full_name, :email, :internal_id, :external_id], :shared_with => [:display_name, :first_name, :last_name, :full_name, :email, :internal_id, :external_id])
   end
 
   def format_worklog_entries entries

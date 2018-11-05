@@ -4,10 +4,10 @@ class Entry
 
   field :author_id, type: String
   field :owner_id, type: String
-  field :tagged_user_ids, type: Array
+  field :tagged_users, type: Array
   field :sharing_level, type: String
-  field :title, type: String
-  field :description, type: String
+  # field :title, type: String
+  field :description, type: Hash
   field :entry_type_id, type: String
   field :version, type: String
   field :content, type: Hash

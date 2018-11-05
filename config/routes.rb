@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get :get_version_list
       get :root_entry_types
       get :all_sub_entry_types
+      get :all_worklog_entry_types
+      get :all_feedback_entry_types
     end
     member do
       get :get_version_list

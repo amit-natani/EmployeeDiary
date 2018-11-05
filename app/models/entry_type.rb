@@ -24,10 +24,20 @@ class EntryType
   scope :non_instantiable, -> { where(instantiable: false) }
 
   scope :sub_entry_types, -> (parent_id) do
-     where(parent_id: parent_id.to_s) 
+    where(parent_id: parent_id.to_s) 
   end
 
   scope :all_sub_entry_types, -> do
     where(instantiable: true) 
- end
+  end
+  
+  scope :worklog_sub_entry_types, -> do
+    entry_type = EntryType.find_by(name: 'Worklog')
+    where(parent_id: entry_type.id) 
+  end
+
+  scope :feedback_sub_entry_types, -> do
+    entry_type = EntryType.find_by(name: 'Feedback')
+    where(parent_id: entry_type.id) 
+  end
 end

@@ -16,6 +16,16 @@ class EntryTypesController < ApplicationController
     @entry_types = EntryType.all_sub_entry_types
     render :sub_entry_types
   end
+
+  def all_worklog_entry_types
+    @entry_types = EntryType.worklog_sub_entry_types
+    render :sub_entry_types
+  end
+
+  def all_feedback_entry_types
+    @entry_types = EntryType.feedback_sub_entry_types
+    render :sub_entry_types
+  end
   
   def get_custom_form
     id = params[:id]
